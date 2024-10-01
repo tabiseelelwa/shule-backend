@@ -76,6 +76,14 @@ app.get("/api/eleve/classe/:classe", (req, res) => {
     return res.json(resultat);
   });
 });
+app.get("/api/eleve/conduite/:conduite", (req, res) => {
+  const cond = req.params.conduite;
+  const sql = "SELECT * FROM apprennant WHERE conduite = ?";
+  Bdd.query(sql, [classe], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json(resultat);
+  });
+});
 
 app.put("/api/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
