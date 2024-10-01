@@ -68,6 +68,14 @@ app.get("/api/eleve/:matricule", (req, res) => {
     return res.json(resultat);
   });
 });
+app.get("/api/eleve/classe/:classe", (req, res) => {
+  const classe = req.params.classe;
+  const sql = "SELECT * FROM apprennant WHERE classe = ?";
+  Bdd.query(sql, [classe], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json(resultat);
+  });
+});
 
 app.put("/api/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
