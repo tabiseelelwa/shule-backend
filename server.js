@@ -26,7 +26,7 @@ app.get("/api/message", (req, res) => {
   return res.send("La fumée blanche");
 });
 
-// Lecture de tous les élèves
+// Création d'un élève
 app.post("/api/nouveleve", (req, res) => {
   //   const matri = moment(Date.now()).format("DD-MM-YYYY HH:mm:ss");
   const matri = Date.now();
@@ -53,6 +53,7 @@ app.post("/api/nouveleve", (req, res) => {
   console.log(req.body.nom);
 });
 
+// Lecture de tous les élèves
 app.get("/api/eleves", (req, res) => {
   const sql = "SELECT * FROM apprennant";
   Bdd.query(sql, (err, resultat) => {
@@ -60,6 +61,8 @@ app.get("/api/eleves", (req, res) => {
     return res.json(resultat);
   });
 });
+
+// Lecture d'un élève selon son matricule
 app.get("/api/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const sql = "SELECT * FROM apprennant WHERE matricule = ?";
@@ -68,6 +71,8 @@ app.get("/api/eleve/:matricule", (req, res) => {
     return res.json(resultat);
   });
 });
+
+// Lecture des élèves d'une classe
 app.get("/api/eleve/classe/:classe", (req, res) => {
   const classe = req.params.classe;
   const sql = "SELECT * FROM apprennant WHERE classe = ?";
@@ -76,6 +81,8 @@ app.get("/api/eleve/classe/:classe", (req, res) => {
     return res.json(resultat);
   });
 });
+
+// Lecture des élèves selon une conduite
 app.get("/api/eleve/conduite/:conduite", (req, res) => {
   const cond = req.params.conduite;
   const sql = "SELECT * FROM apprennant WHERE conduite = ?";
@@ -85,6 +92,7 @@ app.get("/api/eleve/conduite/:conduite", (req, res) => {
   });
 });
 
+// Modification d'un élève
 app.put("/api/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const tel = req.body.telephone;
@@ -95,6 +103,7 @@ app.put("/api/eleve/:matricule", (req, res) => {
   });
 });
 
+// Suppression d'un élève
 app.delete("/api/supeleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const sql = "DELETE FROM apprennant WHERE matricule = ?";
