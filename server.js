@@ -22,10 +22,6 @@ const Bdd = mysql.createConnection({
   database: "shule",
 });
 
-app.get("/api/message", (req, res) => {
-  return res.send("La fumée blanche");
-});
-
 // Création d'un élève
 app.post("/api/nouveleve", (req, res) => {
   //   const matri = moment(Date.now()).format("DD-MM-YYYY HH:mm:ss");
