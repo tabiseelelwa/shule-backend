@@ -32,7 +32,7 @@ app.post("/api/nouveleve", (req, res) => {
   const matri = Date.now();
 
   const sql =
-    "INSERT INTO apprennant (`matricule`, `nomappr`, `postnomappr`, `prenomappr`, `sexeappr`, `adresseappr`, `email`, `telephone`) VALUES (?)";
+    "INSERT INTO apprennant (`matricule`, `nomappr`, `postnomappr`, `prenomappr`, `sexeappr`, `adresseappr`, `classe`, `conduite`, `email`, `telephone`) VALUES (?)";
 
   const values = [
     matri,
