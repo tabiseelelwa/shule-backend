@@ -51,6 +51,25 @@ router.delete("/supuser/:idUser", (req, res) => {
 });
 
 // modification d'un utilisateur
-// router.put();
+router.put("/modifuser/:idUser", (req, res) => {
+  const id = req.params.idUser;
+  const sql =
+    "UPDATE users SET noms = ?, telephone = ?, email = ?, motdepasse = ?, role = ? WHERE idUser = ?";
+  Bdd.query(
+    sql,
+    [
+      req.body.noms,
+      req.body.telephone,
+      req.body.email,
+      req.body.mdp,
+      req.body.role,
+      id,
+    ],
+    (err, resultat) => {
+      if (err) return res.json(err);
+      return res.json(resultat);
+    }
+  );
+});
 
 module.exports = router;
