@@ -21,4 +21,12 @@ router.post("/nouveluser", (req, res) => {
   });
 });
 
+router.get("/users", (req, res) => {
+  const sql = "SELECT * FROM users";
+  Bdd.query(sql, (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json(resultat);
+  });
+});
+
 module.exports = router;
