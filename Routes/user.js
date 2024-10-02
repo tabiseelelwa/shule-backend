@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Bdd = require("../bdd/connexion");
 
-// Création d'une classe
+// Création d'un utilisateur
 router.post("/nouveluser", (req, res) => {
   const id = Date.now();
   const sql =
@@ -21,6 +21,7 @@ router.post("/nouveluser", (req, res) => {
   });
 });
 
+// Affichage de tous les utilisateurs
 router.get("/users", (req, res) => {
   const sql = "SELECT * FROM users";
   Bdd.query(sql, (err, resultat) => {
@@ -29,6 +30,7 @@ router.get("/users", (req, res) => {
   });
 });
 
+// affichage d'un utilisateur
 router.get("/user/:idUser", (req, res) => {
   const id = req.params.idUser;
   const sql = "SELECT * FROM users WHERE idUser = ?";
@@ -38,6 +40,7 @@ router.get("/user/:idUser", (req, res) => {
   });
 });
 
+// suppresion d'un utilisateur
 router.delete("/supuser/:idUser", (req, res) => {
   const id = req.params.idUser;
   const sql = "DELETE FROM users WHERE idUser = ?";
@@ -46,5 +49,8 @@ router.delete("/supuser/:idUser", (req, res) => {
     return res.json(resultat);
   });
 });
+
+// modification d'un utilisateur
+// router.put();
 
 module.exports = router;
