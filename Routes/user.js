@@ -29,4 +29,13 @@ router.get("/users", (req, res) => {
   });
 });
 
+router.get("/user/:idUser", (req, res) => {
+  const id = req.params.idUser;
+  const sql = "SELECT * FROM users WHERE idUser = ?";
+  Bdd.query(sql, [id], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json(resultat);
+  });
+});
+
 module.exports = router;
