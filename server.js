@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const apprRoutes = require("./Routes/Apprenant");
 const classeRoutes = require("./Routes/classe");
+const userRoutes = require("./Routes/user");
 
 // const moment = require("moment")
 const app = express();
@@ -16,10 +17,10 @@ app.use(
   })
 );
 
-// Les routes de l'apprenant
-
+// Les routes
 app.use("/api", apprRoutes);
 app.use("/api", classeRoutes);
+app.use("/api", userRoutes);
 
 const port = 5000;
 app.listen(port, () => {
