@@ -38,4 +38,13 @@ router.get("/user/:idUser", (req, res) => {
   });
 });
 
+router.delete("/supuser/:idUser", (req, res) => {
+  const id = req.params.idUser;
+  const sql = "DELETE FROM users WHERE idUser = ?";
+  Bdd.query(sql, [id], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json(resultat);
+  });
+});
+
 module.exports = router;
