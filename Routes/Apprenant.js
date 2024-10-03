@@ -122,6 +122,5 @@ router.delete("/supeleve/:matricule", (req, res) => {
     return res.json(resultat);
   });
 });
-// });
 
 module.exports = router;

@@ -1,13 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+
+// Appel des différents fichiers et leurs différentes routes
 const apprRoutes = require("./Routes/Apprenant");
 const classeRoutes = require("./Routes/classe");
 const userRoutes = require("./Routes/user");
 const sectionRoutes = require("./Routes/section");
 const paiementRoutes = require("./Routes/paiement");
 
-// const moment = require("moment")
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
@@ -19,7 +20,7 @@ app.use(
   })
 );
 
-// Les routes
+// utilisations des différentes routes
 app.use("/api", apprRoutes);
 app.use("/api", classeRoutes);
 app.use("/api", userRoutes);

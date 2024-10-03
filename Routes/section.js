@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Bdd = require("../bdd/connexion");
 
+// Création d'une nouvelle section
 router.post("/nouvsection", (req, res) => {
   const code = Date.now();
   const values = [code, req.body.designation];
@@ -15,6 +16,7 @@ router.post("/nouvsection", (req, res) => {
   });
 });
 
+// Affichage de toutes les sections
 router.get("/sections", (req, res) => {
   const sql = "SELECT * FROM section";
   Bdd.query(sql, (err, resultat) => {
@@ -23,6 +25,7 @@ router.get("/sections", (req, res) => {
   });
 });
 
+// Affichage d'une seule section
 router.get("/section/:codeSection", (req, res) => {
   const code = req.params.codeSection;
   const sql = "SELECT * FROM section WHERE codeSection = ?";
@@ -32,6 +35,7 @@ router.get("/section/:codeSection", (req, res) => {
   });
 });
 
+// Modification d'une section
 router.put("/modifsection/:codeSection", (req, res) => {
   const code = req.params.codeSection;
   const sql = "UPDATE section SET designSection = ? WHERE codeSection = ?";
@@ -41,6 +45,7 @@ router.put("/modifsection/:codeSection", (req, res) => {
   });
 });
 
+// Suppresion d'une section
 router.delete("/supsection/:codeSection", (req, res) => {
   const code = req.params.codeSection;
   const sql = "DELETE FROM section WHERE codeSection = ?";
