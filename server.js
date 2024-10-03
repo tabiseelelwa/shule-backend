@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const apprRoutes = require("./Routes/Apprenant");
 const classeRoutes = require("./Routes/classe");
 const userRoutes = require("./Routes/user");
+const sectionRoutes = require("./Routes/section");
 
 // const moment = require("moment")
 const app = express();
@@ -21,6 +22,7 @@ app.use(
 app.use("/api", apprRoutes);
 app.use("/api", classeRoutes);
 app.use("/api", userRoutes);
+app.use("/api", sectionRoutes);
 
 const port = 5000;
 app.listen(port, () => {
