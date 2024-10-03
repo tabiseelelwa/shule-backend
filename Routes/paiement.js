@@ -15,4 +15,8 @@ router.post("/nouvpaiment", (req, res) => {
   });
 });
 
+router.delete('/suppaiement/:numPaiement', (req, res)=>{
+    
+})
+
 module.exports = router;
