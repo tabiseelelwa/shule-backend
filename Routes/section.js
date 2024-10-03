@@ -41,4 +41,13 @@ router.put("/modifsection/:codeSection", (req, res) => {
   });
 });
 
+router.delete("/supsection/:codeSection", (req, res) => {
+  const code = req.params.codeSection;
+  const sql = "DELETE FROM section WHERE codeSection = ?";
+  Bdd.query(sql, [code], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json({ Message: "Enregistrement supprimé...." });
+  });
+});
+
 module.exports = router;
