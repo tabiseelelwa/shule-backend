@@ -28,7 +28,16 @@ router.get("/section/:codeSection", (req, res) => {
   const sql = "SELECT * FROM section WHERE codeSection = ?";
   Bdd.query(sql, [code], (err, resultat) => {
     if (err) return res.json(err);
-    return res.json({ message: "Modification effectué avec succès" });
+    return res.json(resultat);
+  });
+});
+
+router.put("/modifsection/:codeSection", (req, res) => {
+  const code = req.params.codeSection;
+  const sql = "UPDATE section SET designSection = ? WHERE codeSection = ?";
+  Bdd.query(sql, [req.body.designation, code], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json(resultat);
   });
 });
 
