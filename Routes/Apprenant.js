@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Bdd = require("../bdd/connexion");
 
-// router.get("/", (req, res) => {
 // Création d'un élève
 router.post("/nouveleve", (req, res) => {
   //   const matri = moment(Date.now()).format("DD-MM-YYYY HH:mm:ss");

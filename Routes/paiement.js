@@ -79,15 +79,6 @@ router.get("/paiement/apprenant/:apprenant", (req, res) => {
     return res.json(resultat);
   });
 });
-router.get("/paiement/date/:datePaiament", (req, res) => {
-  const datePaie = req.params.datePaiament;
-  const sql = "SELECT * FROM paiement  WHERE datePaiement = ?";
-
-  Bdd.query(sql, [datePaie], (err, resultat) => {
-    if (err) return res.json(err);
-    return res.json(resultat);
-  });
-});
 
 // suppression d'un paiement
 router.delete("/suppaiement/:numPaiement", (req, res) => {
