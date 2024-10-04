@@ -6,8 +6,8 @@ const Bdd = require("../bdd/connexion");
 router.post("/nouvsection", (req, res) => {
   const code = Date.now();
   const values = [code, req.body.designation];
-  const sql = "INSERT INTO section(`codeSection`, `designSection`) VALUES(?)";
-  Bdd.query(sql, [values], (err, resultat) => {
+  const requete = "INSERT INTO section(`codeSection`, `designSection`) VALUES(?)";
+  Bdd.query(requete, [values], (err, resultat) => {
     if (err) return res.json(err);
     return res.json({
       //   resultat,
@@ -18,8 +18,8 @@ router.post("/nouvsection", (req, res) => {
 
 // Affichage de toutes les sections
 router.get("/sections", (req, res) => {
-  const sql = "SELECT * FROM section";
-  Bdd.query(sql, (err, resultat) => {
+  const requete = "SELECT * FROM section";
+  Bdd.query(requete, (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -28,8 +28,8 @@ router.get("/sections", (req, res) => {
 // Affichage d'une seule section
 router.get("/section/:codeSection", (req, res) => {
   const code = req.params.codeSection;
-  const sql = "SELECT * FROM section WHERE codeSection = ?";
-  Bdd.query(sql, [code], (err, resultat) => {
+  const requete = "SELECT * FROM section WHERE codeSection = ?";
+  Bdd.query(requete, [code], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -38,8 +38,8 @@ router.get("/section/:codeSection", (req, res) => {
 // Modification d'une section
 router.put("/modifsection/:codeSection", (req, res) => {
   const code = req.params.codeSection;
-  const sql = "UPDATE section SET designSection = ? WHERE codeSection = ?";
-  Bdd.query(sql, [req.body.designation, code], (err, resultat) => {
+  const requete = "UPDATE section SET designSection = ? WHERE codeSection = ?";
+  Bdd.query(requete, [req.body.designation, code], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -48,8 +48,8 @@ router.put("/modifsection/:codeSection", (req, res) => {
 // Suppresion d'une section
 router.delete("/supsection/:codeSection", (req, res) => {
   const code = req.params.codeSection;
-  const sql = "DELETE FROM section WHERE codeSection = ?";
-  Bdd.query(sql, [code], (err, resultat) => {
+  const requete = "DELETE FROM section WHERE codeSection = ?";
+  Bdd.query(requete, [code], (err, resultat) => {
     if (err) return res.json(err);
     return res.json({ Message: "Enregistrement supprimé...." });
   });

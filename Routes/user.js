@@ -5,7 +5,7 @@ const Bdd = require("../bdd/connexion");
 // Création d'un utilisateur
 router.post("/nouveluser", (req, res) => {
   const id = Date.now();
-  const sql =
+  const requete =
     "INSERT INTO users(`iduser`, `noms`, `telephone`, `email`, `motdepasse`, `role`) VALUES(?)";
   const values = [
     id,
@@ -15,7 +15,7 @@ router.post("/nouveluser", (req, res) => {
     req.body.mdp,
     req.body.role,
   ];
-  Bdd.query(sql, [values], (err, reslutat) => {
+  Bdd.query(requete, [values], (err, reslutat) => {
     if (err) return res.json(err);
     return res.json(reslutat);
   });
@@ -23,8 +23,8 @@ router.post("/nouveluser", (req, res) => {
 
 // Affichage de tous les utilisateurs
 router.get("/users", (req, res) => {
-  const sql = "SELECT * FROM users";
-  Bdd.query(sql, (err, resultat) => {
+  const requete = "SELECT * FROM users";
+  Bdd.query(requete, (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -33,8 +33,8 @@ router.get("/users", (req, res) => {
 // affichage d'un utilisateur
 router.get("/user/:idUser", (req, res) => {
   const id = req.params.idUser;
-  const sql = "SELECT * FROM users WHERE idUser = ?";
-  Bdd.query(sql, [id], (err, resultat) => {
+  const requete = "SELECT * FROM users WHERE idUser = ?";
+  Bdd.query(requete, [id], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -43,8 +43,8 @@ router.get("/user/:idUser", (req, res) => {
 // suppresion d'un utilisateur
 router.delete("/supuser/:idUser", (req, res) => {
   const id = req.params.idUser;
-  const sql = "DELETE FROM users WHERE idUser = ?";
-  Bdd.query(sql, [id], (err, resultat) => {
+  const requete = "DELETE FROM users WHERE idUser = ?";
+  Bdd.query(requete, [id], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -53,10 +53,10 @@ router.delete("/supuser/:idUser", (req, res) => {
 // modification d'un utilisateur
 router.put("/modifuser/:idUser", (req, res) => {
   const id = req.params.idUser;
-  const sql =
+  const requete =
     "UPDATE users SET noms = ?, telephone = ?, email = ?, motdepasse = ?, role = ? WHERE idUser = ?";
   Bdd.query(
-    sql,
+    requete,
     [
       req.body.noms,
       req.body.telephone,

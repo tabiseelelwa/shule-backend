@@ -7,7 +7,7 @@ router.post("/nouveleve", (req, res) => {
   //   const matri = moment(Date.now()).format("DD-MM-YYYY HH:mm:ss");
   const matri = Date.now();
 
-  const sql =
+  const requete =
     "INSERT INTO apprennant (`matricule`, `nomappr`, `postnomappr`, `prenomappr`, `sexeappr`, `adresseappr`, `ecole`, `section`, `classe`, `conduite`, `email`, `telephone`) VALUES (?)";
 
   const values = [
@@ -25,7 +25,7 @@ router.post("/nouveleve", (req, res) => {
     req.body.telephone,
   ];
 
-  Bdd.query(sql, [values], (err, resultat) => {
+  Bdd.query(requete, [values], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -35,8 +35,8 @@ router.post("/nouveleve", (req, res) => {
 
 // Lecture de tous les élèves
 router.get("/eleves", (req, res) => {
-  const sql = "SELECT * FROM apprennant";
-  Bdd.query(sql, (err, resultat) => {
+  const requete = "SELECT * FROM apprennant";
+  Bdd.query(requete, (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -45,8 +45,8 @@ router.get("/eleves", (req, res) => {
 // Lecture d'un élève selon son matricule
 router.get("/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
-  const sql = "SELECT * FROM apprennant WHERE matricule = ?";
-  Bdd.query(sql, [matri], (err, resultat) => {
+  const requete = "SELECT * FROM apprennant WHERE matricule = ?";
+  Bdd.query(requete, [matri], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -55,8 +55,8 @@ router.get("/eleve/:matricule", (req, res) => {
 // Lecture des élèves selon le sexe
 router.get("/eleve/sexe/:sexe", (req, res) => {
   const sexe = req.params.sexe;
-  const sql = "SELECT * FROM apprennant WHERE sexeappr = ?";
-  Bdd.query(sql, [sexe], (err, resultat) => {
+  const requete = "SELECT * FROM apprennant WHERE sexeappr = ?";
+  Bdd.query(requete, [sexe], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -65,8 +65,8 @@ router.get("/eleve/sexe/:sexe", (req, res) => {
 // Lecture des élèves d'une école
 router.get("/eleve/ecole/:ecole", (req, res) => {
   const ecole = req.params.ecole;
-  const sql = "SELECT * FROM apprennant WHERE ecole = ?";
-  Bdd.query(sql, [ecole], (err, resultat) => {
+  const requete = "SELECT * FROM apprennant WHERE ecole = ?";
+  Bdd.query(requete, [ecole], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -75,8 +75,8 @@ router.get("/eleve/ecole/:ecole", (req, res) => {
 // Lecture des élèves d'une classe
 router.get("/eleve/classe/:classe", (req, res) => {
   const classe = req.params.classe;
-  const sql = "SELECT * FROM apprennant WHERE classe = ?";
-  Bdd.query(sql, [classe], (err, resultat) => {
+  const requete = "SELECT * FROM apprennant WHERE classe = ?";
+  Bdd.query(requete, [classe], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -85,8 +85,8 @@ router.get("/eleve/classe/:classe", (req, res) => {
 // Lecture des élèves d'une section
 router.get("/eleve/section/:section", (req, res) => {
   const section = req.params.section;
-  const sql = "SELECT * FROM apprennant WHERE section = ?";
-  Bdd.query(sql, [section], (err, resultat) => {
+  const requete = "SELECT * FROM apprennant WHERE section = ?";
+  Bdd.query(requete, [section], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -95,8 +95,8 @@ router.get("/eleve/section/:section", (req, res) => {
 // Lecture des élèves selon une conduite
 router.get("/eleve/conduite/:conduite", (req, res) => {
   const cond = req.params.conduite;
-  const sql = "SELECT * FROM apprennant WHERE conduite = ?";
-  Bdd.query(sql, [cond], (err, resultat) => {
+  const requete = "SELECT * FROM apprennant WHERE conduite = ?";
+  Bdd.query(requete, [cond], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -106,8 +106,8 @@ router.get("/eleve/conduite/:conduite", (req, res) => {
 router.put("/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const tel = req.body.telephone;
-  const sql = "UPDATE apprennant SET telephone = ? WHERE matricule = ?";
-  Bdd.query(sql, [tel, matri], (err, resultat) => {
+  const requete = "UPDATE apprennant SET telephone = ? WHERE matricule = ?";
+  Bdd.query(requete, [tel, matri], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
@@ -116,8 +116,8 @@ router.put("/eleve/:matricule", (req, res) => {
 // Suppression d'un élève
 router.delete("/supeleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
-  const sql = "DELETE FROM apprennant WHERE matricule = ?";
-  Bdd.query(sql, [matri], (err, resultat) => {
+  const requete = "DELETE FROM apprennant WHERE matricule = ?";
+  Bdd.query(requete, [matri], (err, resultat) => {
     if (err) return res.json(err);
     return res.json(resultat);
   });
