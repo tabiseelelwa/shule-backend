@@ -29,8 +29,8 @@ router.get("/options", (req, res) => {
 });
 
 // Afficher une seule options
-router.get("/options/:codeoptions", (req, res) => {
-  const code = req.params.codeoptions;
+router.get("/options/:code", (req, res) => {
+  const code = req.params.code;
   const requete = "SELECT * FROM options WHERE codeOption = ?";
   Bdd.query(requete, [code], (err, resultat) => {
     if (err) return res.json(err);
@@ -48,8 +48,8 @@ router.get("/options/section/:section", (req, res) => {
   });
 });
 
-router.put("/modifoptions/:codeOptions", (req, res) => {
-  const code = req.params.codeOptions;
+router.put("/modifoptions/:code", (req, res) => {
+  const code = req.params.code;
   const requete =
     "UPDATE options SET designOption = ?, descOption = ?, section = ? WHERE codeOption = ?";
   Bdd.query(
@@ -62,8 +62,8 @@ router.put("/modifoptions/:codeOptions", (req, res) => {
   );
 });
 
-router.delete("/supoptions/:codeoptions", (req, res) => {
-  const code = req.params.codeoptions;
+router.delete("/supoptions/:code", (req, res) => {
+  const code = req.params.codeo;
   const requete = "DELETE FROM options WHERE codeOption = ?";
   Bdd.query(requete, [code], (err) => {
     if (err) return res.json(err);
