@@ -45,4 +45,14 @@ router.put("/modifservice/:codeService", (req, res) => {
   );
 });
 
+router.delete("/supservice/:codeService", (req, res) => {
+  const code = req.params.codeService;
+  const requete = "DELETE FROM service WHERE codeService = ?";
+
+  Bdd.query(requete, [code], (err, resultat) => {
+    if (err) return res.json(err);
+    return res.json({ Message: "Supprimé...!" });
+  });
+});
+
 module.exports = router;

@@ -9,6 +9,7 @@ const userRoutes = require("./Routes/user");
 const sectionRoutes = require("./Routes/section");
 const paiementRoutes = require("./Routes/paiement");
 const serviceRoutes = require("./Routes/service");
+const optionRoutes = require("./Routes/option");
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use("/api", userRoutes);
 app.use("/api", sectionRoutes);
 app.use("/api", paiementRoutes);
 app.use("/api", serviceRoutes);
+app.use("/api", optionRoutes);
 
 const port = 5000;
 app.listen(port, () => {
