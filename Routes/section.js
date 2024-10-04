@@ -6,11 +6,11 @@ const Bdd = require("../bdd/connexion");
 router.post("/nouvsection", (req, res) => {
   const code = Date.now();
   const values = [code, req.body.designation];
-  const requete = "INSERT INTO section(`codeSection`, `designSection`) VALUES(?)";
+  const requete =
+    "INSERT INTO section(`codeSection`, `designSection`) VALUES(?)";
   Bdd.query(requete, [values], (err, resultat) => {
     if (err) return res.json(err);
     return res.json({
-      //   resultat,
       message: "Enregistrement effectué avec succès",
     });
   });

@@ -6,7 +6,7 @@ const Bdd = require("../bdd/connexion");
 router.post("/nouvoption", (req, res) => {
   const code = Date.now();
   const requete =
-    "INSERT INTO option(codeOption, designOption, descOption, section) VALUES(?)";
+    "INSERT INTO option(`codeOption`, `designOption`, `descOption`, `section`) VALUES(?)";
   const values = [
     code,
     req.body.designation,
