@@ -6,12 +6,13 @@ const Bdd = require("../bdd/connexion");
 router.post("/nouveluser", (req, res) => {
   const id = Date.now();
   const requete =
-    "INSERT INTO users(`iduser`, `noms`, `telephone`, `email`, `motdepasse`, `role`) VALUES(?)";
+    "INSERT INTO users(`iduser`, `nomUser`, `postnomUser`, `prenomUser`, `telephone`, `email`, `service`, `motdepasse`, `role`) VALUES(?)";
   const values = [
     id,
     req.body.noms,
     req.body.telephone,
     req.body.email,
+    req.body.service,
     req.body.mdp,
     req.body.role,
   ];
