@@ -19,7 +19,7 @@ router.post("/nouveluser", (req, res) => {
   ];
   Bdd.query(requete, [values], (err, reslutat) => {
     if (err) return res.json(err);
-    return res.json(reslutat);
+    return res.json({ Message: "Informations ajoutées avec succès" });
   });
 });
 
@@ -48,7 +48,7 @@ router.delete("/supuser/:idUser", (req, res) => {
   const requete = "DELETE FROM users WHERE idUser = ?";
   Bdd.query(requete, [id], (err, resultat) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json({ Message: "Supprimé..!" });
   });
 });
 
@@ -56,20 +56,22 @@ router.delete("/supuser/:idUser", (req, res) => {
 router.put("/modifuser/:idUser", (req, res) => {
   const id = req.params.idUser;
   const requete =
-    "UPDATE users SET noms = ?, telephone = ?, email = ?, motdepasse = ?, role = ? WHERE idUser = ?";
+    "UPDATE users SET nomUser = ?, postnomUser = ?, prenomUser = ?, telephone = ?, email = ?, service = ?, role = ? WHERE idUser = ?";
   Bdd.query(
     requete,
     [
-      req.body.noms,
+      req.body.nom,
+      req.body.postnom,
+      req.body.prenom,
       req.body.telephone,
       req.body.email,
-      req.body.mdp,
+      req.body.service,
       req.body.role,
       id,
     ],
     (err, resultat) => {
       if (err) return res.json(err);
-      return res.json(resultat);
+      return res.json({ Message: "Modification effectuée..!" });
     }
   );
 });
