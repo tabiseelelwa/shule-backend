@@ -10,6 +10,7 @@ const sectionRoutes = require("./Routes/section");
 const paiementRoutes = require("./Routes/paiement");
 const serviceRoutes = require("./Routes/service");
 const optionRoutes = require("./Routes/option");
+const annAcadRoutes = require("./Routes/annAcad");
 
 const app = express();
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use("/api", sectionRoutes);
 app.use("/api", paiementRoutes);
 app.use("/api", serviceRoutes);
 app.use("/api", optionRoutes);
+app.use("/api", annAcadRoutes);
 
 const port = 5000;
 app.listen(port, () => {
