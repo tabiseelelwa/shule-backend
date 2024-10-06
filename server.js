@@ -26,6 +26,7 @@ const annAcadRoutes = require("./Routes/annAcad");
 const fraisRoutes = require("./Routes/fraisAcad");
 
 // utilisations des différentes routes
+
 app.use("/api", apprRoutes);
 app.use("/api", classeRoutes);
 app.use("/api", userRoutes);
