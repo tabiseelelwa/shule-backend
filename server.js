@@ -11,6 +11,7 @@ const paiementRoutes = require("./Routes/paiement");
 const serviceRoutes = require("./Routes/service");
 const optionRoutes = require("./Routes/option");
 const annAcadRoutes = require("./Routes/annAcad");
+const fraisRoutes = require("./Routes/fraisAcad");
 
 const app = express();
 app.use(express.json());
@@ -32,6 +33,7 @@ app.use("/api", paiementRoutes);
 app.use("/api", serviceRoutes);
 app.use("/api", optionRoutes);
 app.use("/api", annAcadRoutes);
+app.use("/api", fraisRoutes);
 
 const port = 5000;
 app.listen(port, () => {

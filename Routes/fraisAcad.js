@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Bdd = require("../bdd/connexion");
 
-router.post("/nouvfaris", (req, res) => {
+router.post("/nouvfrais", (req, res) => {
   const code = Date.now();
   const requete =
     "INSERT INTO  fraisacad(idFrais, montFrais, statut) VALUES(?)";
