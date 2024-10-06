@@ -21,4 +21,22 @@ router.get("/list/frais", (req, res) => {
   });
 });
 
+router.put("/modif/frais/:code", (req, res) => {
+  const code = req.params.code;
+  const requete =
+    "UPDATE fraisacad SET designFrais = ?, montfrais = ? WHERE idFrais = ?";
+  const values = [req.body.designation, req.body.montant, code];
+  Bdd.query(requete, [values], (err)=>{
+    
+  })
+});
+
+router.delete("/sup/frais/:code", (req, res) => {
+  const code = req.params.code;
+  const requete = "DELETE FROM fraisacad WHERE idFrais = ?";
+  Bdd.query(requete, [code], (err) => {
+    if (err) return res.json(err);
+    return res.json({ Message: "Supprimé....!" });
+  });
+});
 module.exports = router;
