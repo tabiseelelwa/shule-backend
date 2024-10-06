@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const port = 5000;
 
 const app = express();
 app.use(express.json());
@@ -35,7 +36,6 @@ app.use("/api", optionRoutes);
 app.use("/api", annAcadRoutes);
 app.use("/api", fraisRoutes);
 
-const port = 5000;
 app.listen(port, () => {
   console.log(`Le serveur est actif au port ${port}`);
 });
