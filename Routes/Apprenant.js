@@ -25,9 +25,9 @@ router.post("/nouveleve", (req, res) => {
     req.body.telephone,
   ];
 
-  Bdd.query(requete, [values], (err, resultat) => {
+  Bdd.query(requete, [values], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 
   console.log(req.body.nom);
@@ -36,9 +36,9 @@ router.post("/nouveleve", (req, res) => {
 // Lecture de tous les élèves
 router.get("/eleves", (req, res) => {
   const requete = "SELECT * FROM apprennant";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -46,9 +46,9 @@ router.get("/eleves", (req, res) => {
 router.get("/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const requete = "SELECT * FROM apprennant WHERE matricule = ?";
-  Bdd.query(requete, [matri], (err, resultat) => {
+  Bdd.query(requete, [matri], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -56,9 +56,9 @@ router.get("/eleve/:matricule", (req, res) => {
 router.get("/eleve/sexe/:sexe", (req, res) => {
   const sexe = req.params.sexe;
   const requete = "SELECT * FROM apprennant WHERE sexeappr = ?";
-  Bdd.query(requete, [sexe], (err, resultat) => {
+  Bdd.query(requete, [sexe], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -66,9 +66,9 @@ router.get("/eleve/sexe/:sexe", (req, res) => {
 router.get("/eleve/ecole/:ecole", (req, res) => {
   const ecole = req.params.ecole;
   const requete = "SELECT * FROM apprennant WHERE ecole = ?";
-  Bdd.query(requete, [ecole], (err, resultat) => {
+  Bdd.query(requete, [ecole], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -76,9 +76,9 @@ router.get("/eleve/ecole/:ecole", (req, res) => {
 router.get("/eleve/classe/:classe", (req, res) => {
   const classe = req.params.classe;
   const requete = "SELECT * FROM apprennant WHERE classe = ?";
-  Bdd.query(requete, [classe], (err, resultat) => {
+  Bdd.query(requete, [classe], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -86,9 +86,9 @@ router.get("/eleve/classe/:classe", (req, res) => {
 router.get("/eleve/section/:section", (req, res) => {
   const section = req.params.section;
   const requete = "SELECT * FROM apprennant WHERE section = ?";
-  Bdd.query(requete, [section], (err, resultat) => {
+  Bdd.query(requete, [section], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -96,9 +96,9 @@ router.get("/eleve/section/:section", (req, res) => {
 router.get("/eleve/conduite/:conduite", (req, res) => {
   const cond = req.params.conduite;
   const requete = "SELECT * FROM apprennant WHERE conduite = ?";
-  Bdd.query(requete, [cond], (err, resultat) => {
+  Bdd.query(requete, [cond], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -107,9 +107,9 @@ router.put("/eleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const tel = req.body.telephone;
   const requete = "UPDATE apprennant SET telephone = ? WHERE matricule = ?";
-  Bdd.query(requete, [tel, matri], (err, resultat) => {
+  Bdd.query(requete, [tel, matri], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -117,9 +117,9 @@ router.put("/eleve/:matricule", (req, res) => {
 router.delete("/supeleve/:matricule", (req, res) => {
   const matri = req.params.matricule;
   const requete = "DELETE FROM apprennant WHERE matricule = ?";
-  Bdd.query(requete, [matri], (err, resultat) => {
+  Bdd.query(requete, [matri], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 

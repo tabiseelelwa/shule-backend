@@ -24,6 +24,7 @@ const serviceRoutes = require("./Routes/service");
 const optionRoutes = require("./Routes/option");
 const annAcadRoutes = require("./Routes/annAcad");
 const fraisRoutes = require("./Routes/fraisAcad");
+const inscriptionRoutes = require("./Routes/inscription");
 
 // utilisations des différentes routes
 
@@ -36,6 +37,7 @@ app.use("/api", serviceRoutes);
 app.use("/api", optionRoutes);
 app.use("/api", annAcadRoutes);
 app.use("/api", fraisRoutes);
+app.use("/api", inscriptionRoutes);
 
 app.listen(port, () => {
   console.log(`Le serveur est actif au port ${port}`);

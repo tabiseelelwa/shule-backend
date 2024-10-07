@@ -17,9 +17,9 @@ router.post("/nouvAnneeAcad", (req, res) => {
 // Afficher toutes les années académiques
 router.get("/list/ann-acad", (req, res) => {
   const requete = "SELECT * FROM annee_acad";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -27,9 +27,9 @@ router.get("/list/ann-acad", (req, res) => {
 router.get("/annacad/:code", (req, res) => {
   const code = req.params.code;
   const requete = "SELECT * FROM annee_acad WHERE idAnnee = ?";
-  Bdd.query(requete, [code], (err, resultat) => {
+  Bdd.query(requete, [code], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 

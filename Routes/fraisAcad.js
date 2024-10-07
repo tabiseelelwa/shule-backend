@@ -15,9 +15,9 @@ router.post("/nouvfrais", (req, res) => {
 
 router.get("/list/frais", (req, res) => {
   const requete = "SELECT * FROM fraisacad";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 

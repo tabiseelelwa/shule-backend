@@ -26,9 +26,9 @@ router.post("/nouveluser", (req, res) => {
 // Affichage de tous les utilisateurs
 router.get("/users", (req, res) => {
   const requete = "SELECT * FROM users";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -36,9 +36,9 @@ router.get("/users", (req, res) => {
 router.get("/user/:idUser", (req, res) => {
   const id = req.params.idUser;
   const requete = "SELECT * FROM users WHERE idUser = ?";
-  Bdd.query(requete, [id], (err, resultat) => {
+  Bdd.query(requete, [id], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -46,7 +46,7 @@ router.get("/user/:idUser", (req, res) => {
 router.delete("/supuser/:idUser", (req, res) => {
   const id = req.params.idUser;
   const requete = "DELETE FROM users WHERE idUser = ?";
-  Bdd.query(requete, [id], (err, resultat) => {
+  Bdd.query(requete, [id], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Supprimé..!" });
   });
@@ -69,7 +69,7 @@ router.put("/modifuser/:idUser", (req, res) => {
       req.body.role,
       id,
     ],
-    (err, resultat) => {
+    (err, donnees) => {
       if (err) return res.json(err);
       return res.json({ Message: "Modification effectuée..!" });
     }

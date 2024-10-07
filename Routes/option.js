@@ -13,7 +13,7 @@ router.post("/nouvoption", (req, res) => {
     req.body.description,
     req.body.section,
   ];
-  Bdd.query(requete, [values], (err, resultat) => {
+  Bdd.query(requete, [values], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Enregistré......" });
   });
@@ -22,9 +22,9 @@ router.post("/nouvoption", (req, res) => {
 // Affichage des toutes les optionss
 router.get("/options", (req, res) => {
   const requete = "SELECT * FROM options";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -32,9 +32,9 @@ router.get("/options", (req, res) => {
 router.get("/options/:code", (req, res) => {
   const code = req.params.code;
   const requete = "SELECT * FROM options WHERE codeOption = ?";
-  Bdd.query(requete, [code], (err, resultat) => {
+  Bdd.query(requete, [code], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -42,9 +42,9 @@ router.get("/options/:code", (req, res) => {
 router.get("/options/section/:section", (req, res) => {
   const section = req.params.section;
   const requete = "SELECT * FROM options WHERE section = ?";
-  Bdd.query(requete, [section], (err, resultat) => {
+  Bdd.query(requete, [section], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -55,9 +55,9 @@ router.put("/modifoptions/:code", (req, res) => {
   Bdd.query(
     requete,
     [req.body.designation, req.body.description, req.body.section, code],
-    (err, resultat) => {
+    (err, donnees) => {
       if (err) return res.json(err);
-      return res.json(resultat);
+      return res.json(donnees);
     }
   );
 });

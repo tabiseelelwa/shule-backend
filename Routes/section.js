@@ -8,7 +8,7 @@ router.post("/nouvsection", (req, res) => {
   const values = [code, req.body.designation];
   const requete =
     "INSERT INTO section(`codeSection`, `designSection`) VALUES(?)";
-  Bdd.query(requete, [values], (err, resultat) => {
+  Bdd.query(requete, [values], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({
       message: "Enregistrement effectué avec succès",
@@ -19,9 +19,9 @@ router.post("/nouvsection", (req, res) => {
 // Affichage de toutes les sections
 router.get("/sections", (req, res) => {
   const requete = "SELECT * FROM section";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -29,9 +29,9 @@ router.get("/sections", (req, res) => {
 router.get("/section/:codeSection", (req, res) => {
   const code = req.params.codeSection;
   const requete = "SELECT * FROM section WHERE codeSection = ?";
-  Bdd.query(requete, [code], (err, resultat) => {
+  Bdd.query(requete, [code], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -39,9 +39,9 @@ router.get("/section/:codeSection", (req, res) => {
 router.put("/modifsection/:codeSection", (req, res) => {
   const code = req.params.codeSection;
   const requete = "UPDATE section SET designSection = ? WHERE codeSection = ?";
-  Bdd.query(requete, [req.body.designation, code], (err, resultat) => {
+  Bdd.query(requete, [req.body.designation, code], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -49,7 +49,7 @@ router.put("/modifsection/:codeSection", (req, res) => {
 router.delete("/supsection/:codeSection", (req, res) => {
   const code = req.params.codeSection;
   const requete = "DELETE FROM section WHERE codeSection = ?";
-  Bdd.query(requete, [code], (err, resultat) => {
+  Bdd.query(requete, [code], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Enregistrement supprimé...." });
   });

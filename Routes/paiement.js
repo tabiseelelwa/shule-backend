@@ -16,7 +16,7 @@ router.post("/nouvpaiment", (req, res) => {
     datepai,
     req.body.apprenant,
   ];
-  Bdd.query(requete, [values], (err, resultat) => {
+  Bdd.query(requete, [values], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Enregistrement confirmé..." });
   });
@@ -25,9 +25,9 @@ router.post("/nouvpaiment", (req, res) => {
 // Afficher tous les paiements
 router.get("/paiements", (req, res) => {
   const requete = "SELECT * FROM paiement";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -40,7 +40,7 @@ router.put("/modifpaiement/:numPaiement", (req, res) => {
   Bdd.query(
     requete,
     [req.body.montant, req.body.motif, req.body.apprenant, numpaie],
-    (err, resultat) => {
+    (err, donnees) => {
       if (err) return res.json(err);
       return res.json({ Message: "Modification effectuée avec succès..." });
     }
@@ -52,9 +52,9 @@ router.get("/paiements/date/:datePaiament", (req, res) => {
   const datePaie = req.params.datePaiament;
   const requete = "SELECT * FROM paiement  WHERE datePaiement = ?";
 
-  Bdd.query(requete, [datePaie], (err, resultat) => {
+  Bdd.query(requete, [datePaie], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -63,9 +63,9 @@ router.get("/paiements/aujourdhui/:datePaiament", (req, res) => {
   const datePaie = moment(Date.now()).format("DD-MM-YYYY");
   const requete = "SELECT * FROM paiement  WHERE datePaiement = ?";
 
-  Bdd.query(requete, [datePaie], (err, resultat) => {
+  Bdd.query(requete, [datePaie], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -74,9 +74,9 @@ router.get("/paiement/apprenant/:apprenant", (req, res) => {
   const apprenant = req.params.apprenant;
   const requete = "SELECT * FROM paiement  WHERE apprenant = ?";
 
-  Bdd.query(requete, [apprenant], (err, resultat) => {
+  Bdd.query(requete, [apprenant], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -84,7 +84,7 @@ router.get("/paiement/apprenant/:apprenant", (req, res) => {
 router.delete("/suppaiement/:numPaiement", (req, res) => {
   const numpaie = req.params.numPaiement;
   const requete = "DELETE FROM paiement WHERE numPaiement = ?";
-  Bdd.query(requete, [numpaie], (err, resultat) => {
+  Bdd.query(requete, [numpaie], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Supprimé avec succès..." });
   });

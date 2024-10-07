@@ -7,7 +7,7 @@ router.post("/nouvserv", (req, res) => {
   const requete =
     "INSERT INTO service(codeService, designService, descService) VALUES(?)";
   const values = [numAgent, req.body.designation, req.body.description];
-  Bdd.query(requete, [values], (err, resultat) => {
+  Bdd.query(requete, [values], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Enregistrement effectué..!" });
   });
@@ -15,18 +15,18 @@ router.post("/nouvserv", (req, res) => {
 
 router.get("/services", (req, res) => {
   const requete = "SELECT * FROM service";
-  Bdd.query(requete, (err, resultat) => {
+  Bdd.query(requete, (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
 router.get("/service/:codeService", (req, res) => {
   const code = req.params.codeService;
   const requete = "SELECT * FROM service WHERE codeService = ?";
-  Bdd.query(requete, [code], (err, resultat) => {
+  Bdd.query(requete, [code], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -38,9 +38,9 @@ router.put("/modifservice/:codeService", (req, res) => {
   Bdd.query(
     requete,
     [req.body.designation, req.body.description, code],
-    (err, resultat) => {
+    (err, donnees) => {
       if (err) return res.json(err);
-      return res.json({ resultat, Message: "Modifié...!" });
+      return res.json({ donnees, Message: "Modifié...!" });
     }
   );
 });
@@ -49,7 +49,7 @@ router.delete("/supservice/:codeService", (req, res) => {
   const code = req.params.codeService;
   const requete = "DELETE FROM service WHERE codeService = ?";
 
-  Bdd.query(requete, [code], (err, resultat) => {
+  Bdd.query(requete, [code], (err, donnees) => {
     if (err) return res.json(err);
     return res.json({ Message: "Supprimé...!" });
   });

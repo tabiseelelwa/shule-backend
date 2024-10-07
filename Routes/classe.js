@@ -17,9 +17,9 @@ router.post("/create_classe", (req, res) => {
 // Afficher toutes les classes
 router.get("/classes", (req, res) => {
   const sql = "SELECT * FROM classe";
-  Bdd.query(sql, (err, resultat) => {
+  Bdd.query(sql, (err, donnees) => {
     if (err) res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -27,9 +27,9 @@ router.get("/classes", (req, res) => {
 router.get("/classe/:codeClasse", (req, res) => {
   const code = req.params.codeClasse;
   const sql = "SELECT * FROM classe WHERE codeClasse = ?";
-  Bdd.query(sql, [code], (err, resultat) => {
+  Bdd.query(sql, [code], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -37,9 +37,9 @@ router.get("/classe/:codeClasse", (req, res) => {
 router.get("/classe/section/:section", (req, res) => {
   const section = req.params.section;
   const sql = "SELECT * FROM classe WHERE section = ?";
-  Bdd.query(sql, [section], (err, resultat) => {
+  Bdd.query(sql, [section], (err, donnees) => {
     if (err) return res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
@@ -52,9 +52,9 @@ router.put("/modifclasse/:codeClasse", (req, res) => {
   Bdd.query(
     sql,
     [code, req.body.designation, req.body.section],
-    (err, resultat) => {
+    (err, donnees) => {
       if (err) return res.json(err);
-      return res.json(resultat);
+      return res.json(donnees);
     }
   );
 });
@@ -63,9 +63,9 @@ router.put("/modifclasse/:codeClasse", (req, res) => {
 router.delete("/supclasse/:codeClasse", (req, res) => {
   const code = req.params.codeClasse;
   const sql = "DELETE FROM classe WHERE codeClasse = ?";
-  Bdd.query(sql, [code], (err, resultat) => {
+  Bdd.query(sql, [code], (err, donnees) => {
     if (err) res.json(err);
-    return res.json(resultat);
+    return res.json(donnees);
   });
 });
 
