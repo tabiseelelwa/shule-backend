@@ -74,7 +74,7 @@ router.get("/list/inscriptions/classe/:code", (req, res) => {
 
 // Afficher les inscriptions par date
 router.get("/list/inscriptions/date/:code", (req, res) => {
-  const date = moment(Date.now()).format("DD-MM-YYYY");
+  const date = req.params.code;
   const requete = "SELECT * FROM inscription WHERE dateInscription = ?";
   Bdd.query(requete, [date], (err, donnees) => {
     if (err) return res.json(err);
@@ -83,9 +83,10 @@ router.get("/list/inscriptions/date/:code", (req, res) => {
 });
 
 // Afficher les inscription d'aujourd'hui
-router.get("/list/inscriptions/today/:code", (req, res) => {
-  const requete = "SELECT * FROM inscription";
-  Bdd.query(requete, (err, donnees) => {
+router.get("/list/inscriptions/today", (req, res) => {
+  const date = moment(Date.now()).format("DD-MM-YYYY");
+  const requete = "SELECT * FROM inscription WHERE dateInscription = ?";
+  Bdd.query(requete, [date], (err, donnees) => {
     if (err) return res.json(err);
     return res.json(donnees);
   });
