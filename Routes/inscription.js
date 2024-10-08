@@ -92,4 +92,29 @@ router.get("/list/inscriptions/today", (req, res) => {
   });
 });
 
+// Modifier une inscription
+router.put("/modif/inscription/:code", (req, res) => {
+  const code = req.params.code;
+  const requete =
+    "UPDATE inscription SET eleve =?, anneeAcad=?, classe=? WHERE idInscription = ?";
+  Bdd.query(
+    requete,
+    [req.body.eleve, req.body.anneeAcad, req.body.classe, code],
+    (err) => {
+      if (err) return res.json(err);
+      return res.json({ Message: "Modifié...!" });
+    }
+  );
+});
+
+// Supprimer une inscription
+router.delete("/suppr/inscription/:code", (req, res) => {
+  const code = req.params.code;
+  const requete = "DELETE FROM inscription WHERE idInscription = ?";
+  Bdd.query(requete, [code], (err) => {
+    if (err) return res.json(err);
+    return res.json({ Message: "Supprimé...!" });
+  });
+});
+
 module.exports = router;
