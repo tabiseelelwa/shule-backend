@@ -16,7 +16,7 @@ router.post("/nouvpaiment", (req, res) => {
     datepai,
     req.body.apprenant,
   ];
-  Bdd.query(requete, [values], (err, donnees) => {
+  Bdd.query(requete, [values], (err) => {
     if (err) return res.json(err);
     return res.json({ Message: "Enregistrement confirmé..." });
   });
@@ -95,7 +95,7 @@ router.get("/paiement/agent/:agent", (req, res) => {
 router.delete("/suppaiement/:numPaiement", (req, res) => {
   const numpaie = req.params.numPaiement;
   const requete = "DELETE FROM paiement WHERE numPaiement = ?";
-  Bdd.query(requete, [numpaie], (err, donnees) => {
+  Bdd.query(requete, [numpaie], (err) => {
     if (err) return res.json(err);
     return res.json({ Message: "Supprimé avec succès..." });
   });
