@@ -80,6 +80,17 @@ router.get("/paiement/apprenant/:apprenant", (req, res) => {
   });
 });
 
+// Recherche des paiements par agent
+router.get("/paiement/agent/:agent", (req, res) => {
+  const agent = req.params.agent;
+  const requete = "SELECT * FROM paiement  WHERE agent = ?";
+
+  Bdd.query(requete, [agent], (err, donnees) => {
+    if (err) return res.json(err);
+    return res.json(donnees);
+  });
+});
+
 // suppression d'un paiement
 router.delete("/suppaiement/:numPaiement", (req, res) => {
   const numpaie = req.params.numPaiement;
